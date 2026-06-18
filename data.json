@@ -1,15 +1,6 @@
 {
   "collection": [
     {
-      "id": "1700000001000",
-      "title": "Sunrise Over the Valley",
-      "category": "A",
-      "description": "Golden hour light cascading through morning mist above the highland valley, captured during the first expedition.",
-      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
-      "date": "2024-01-15",
-      "createdAt": "2024-01-15T06:30:00.000Z"
-    },
-    {
       "id": "1700000002000",
       "title": "Deep Forest Path",
       "category": "B",
