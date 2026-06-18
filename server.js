@@ -111,10 +111,12 @@ app.post("/api/add", async (req, res) => {
       });
     }
 
-    if (!["A", "B", "C"].includes(category)) {
+    const cat = String(category).trim();
+
+    if (!cat) {
       return res.status(400).json({
         status: "error",
-        message: "Category must be A, B, or C",
+        message: "Category cannot be empty",
       });
     }
 
@@ -124,7 +126,7 @@ app.post("/api/add", async (req, res) => {
     const newEntry = {
       id,
       title,
-      category,
+      category: cat,
       description,
       image,
       date,
