@@ -21,12 +21,10 @@
       --text-dim: #4a4a70;
       --accent: #6c63ff;
       --accent-soft: rgba(108, 99, 255, 0.15);
-      --accent-glow: rgba(108, 99, 255, 0.4);
       --cat-a: #ff6b6b;
       --cat-b: #4ecdc4;
       --cat-c: #ffe66d;
       --danger: #ff4757;
-      --danger-soft: rgba(255, 71, 87, 0.15);
       --radius: 12px;
       --radius-sm: 8px;
       --transition: 0.2s ease;
@@ -54,7 +52,7 @@
     }
 
     .header-inner {
-      max-width: 1400px;
+      max-width: 760px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -95,12 +93,6 @@
       text-transform: uppercase;
     }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
     .counter-badge {
       font-family: "Space Mono", monospace;
       font-size: 11px;
@@ -119,7 +111,7 @@
     }
 
     main {
-      max-width: 1400px;
+      max-width: 760px;
       margin: 0 auto;
       padding: 2rem;
     }
@@ -127,14 +119,13 @@
     .controls {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
       align-items: center;
     }
 
     .search-wrap {
-      flex: 1;
-      min-width: 200px;
+      flex: 1 1 100%;
       position: relative;
     }
 
@@ -178,7 +169,7 @@
     }
 
     .tab-btn {
-      padding: 6px 16px;
+      padding: 6px 14px;
       border: none;
       border-radius: 6px;
       background: transparent;
@@ -209,6 +200,7 @@
       cursor: pointer;
       outline: none;
       transition: border-color var(--transition);
+      margin-left: auto;
     }
 
     .sort-select:focus { border-color: var(--accent); }
@@ -226,10 +218,10 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
+    .gallery-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
     .card {
@@ -237,22 +229,21 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-      position: relative;
-      cursor: pointer;
+      transition: border-color var(--transition), box-shadow var(--transition);
     }
 
     .card:hover {
-      transform: translateY(-4px);
       border-color: var(--accent);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-soft);
     }
 
     .card-img-wrap {
       position: relative;
+      width: 100%;
       aspect-ratio: 1 / 1;
       overflow: hidden;
       background: var(--surface-2);
+      cursor: pointer;
     }
 
     .card-img {
@@ -263,7 +254,7 @@
       display: block;
     }
 
-    .card:hover .card-img { transform: scale(1.06); }
+    .card-img-wrap:hover .card-img { transform: scale(1.04); }
 
     .card-img.loading { opacity: 0; }
     .card-img.loaded { opacity: 1; }
@@ -283,12 +274,12 @@
 
     .zoom-hint {
       position: absolute;
-      bottom: 10px;
-      right: 10px;
+      bottom: 12px;
+      right: 12px;
       background: rgba(0, 0, 0, 0.6);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 6px;
-      padding: 4px 8px;
+      padding: 4px 9px;
       font-size: 10px;
       color: rgba(255,255,255,0.7);
       font-family: "Space Mono", monospace;
@@ -299,17 +290,17 @@
       pointer-events: none;
     }
 
-    .card:hover .zoom-hint { opacity: 1; transform: translateY(0); }
+    .card-img-wrap:hover .zoom-hint { opacity: 1; transform: translateY(0); }
 
     .card-body {
-      padding: 1rem;
+      padding: 1.1rem 1.25rem;
     }
 
     .card-meta {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
 
     .category-badge {
@@ -334,106 +325,18 @@
     }
 
     .card-title {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--text);
       margin-bottom: 0.4rem;
       line-height: 1.3;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .card-desc {
       font-size: 13px;
       color: var(--text-muted);
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin-bottom: 0.75rem;
+      line-height: 1.55;
     }
-
-    .card-footer {
-      border-top: 1px solid var(--border);
-      padding-top: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .card-id {
-      font-family: "Space Mono", monospace;
-      font-size: 9px;
-      color: var(--text-dim);
-      letter-spacing: 0.5px;
-    }
-
-    .delete-toggle-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-dim);
-      padding: 4px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      transition: color var(--transition), background var(--transition);
-      font-size: 14px;
-    }
-
-    .delete-toggle-btn:hover {
-      color: var(--danger);
-      background: var(--danger-soft);
-    }
-
-    .delete-confirm-area {
-      display: none;
-      gap: 0.5rem;
-      align-items: center;
-      width: 100%;
-      padding-top: 0.5rem;
-    }
-
-    .delete-confirm-area.visible {
-      display: flex;
-    }
-
-    .delete-confirm-area span {
-      font-size: 12px;
-      color: var(--danger);
-      flex: 1;
-    }
-
-    .btn-cancel-delete {
-      background: var(--surface-3);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background var(--transition);
-    }
-
-    .btn-cancel-delete:hover { background: var(--surface-2); }
-
-    .btn-confirm-delete {
-      background: var(--danger);
-      border: none;
-      color: #fff;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: opacity var(--transition);
-    }
-
-    .btn-confirm-delete:hover { opacity: 0.85; }
 
     .spinner-wrap {
       display: flex;
@@ -442,7 +345,6 @@
       justify-content: center;
       padding: 5rem 2rem;
       gap: 1rem;
-      grid-column: 1 / -1;
     }
 
     .spinner {
@@ -465,7 +367,6 @@
     }
 
     .empty-state {
-      grid-column: 1 / -1;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -491,7 +392,6 @@
     }
 
     .error-banner {
-      grid-column: 1 / -1;
       background: rgba(255, 71, 87, 0.1);
       border: 1px solid rgba(255, 71, 87, 0.3);
       border-radius: var(--radius);
@@ -541,7 +441,7 @@
     .lightbox-info {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       gap: 1rem;
     }
 
@@ -572,49 +472,11 @@
 
     .lightbox-close:hover { background: rgba(255,255,255,0.16); }
 
-    .toast-container {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      z-index: 9999;
-      pointer-events: none;
-    }
-
-    .toast {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 12px 18px;
-      font-size: 13px;
-      color: var(--text);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-      animation: slideIn 0.25s ease, fadeOut 0.4s ease 2.5s forwards;
-      pointer-events: auto;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .toast.success { border-left: 3px solid #4caf50; }
-    .toast.error { border-left: 3px solid var(--danger); }
-
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; transform: translateX(20px); }
-    }
-
     footer {
       border-top: 1px solid var(--border);
       text-align: center;
       padding: 2rem;
-      margin-top: 4rem;
+      margin-top: 3rem;
     }
 
     .footer-inner {
@@ -627,15 +489,10 @@
     .footer-inner span { color: var(--accent); }
 
     @media (max-width: 640px) {
-      main { padding: 1rem; }
-      .controls { gap: 0.75rem; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      main { padding: 1.25rem; }
+      header { padding: 0 1.25rem; }
       .logo-text { display: none; }
-      header { padding: 0 1rem; }
-    }
-
-    @media (max-width: 400px) {
-      .gallery-grid { grid-template-columns: 1fr; }
+      .sort-select { margin-left: 0; flex: 1 1 100%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -651,10 +508,8 @@
       <div class="logo-mark">HA</div>
       <span class="logo-text">HOS Archive</span>
     </a>
-    <div class="header-right">
-      <div class="counter-badge" id="counterBadge">
-        Loading&hellip;
-      </div>
+    <div class="counter-badge" id="counterBadge">
+      Loading&hellip;
     </div>
   </div>
 </header>
@@ -683,7 +538,7 @@
 
   <div class="section-label" id="sectionLabel">— Archive</div>
 
-  <div class="gallery-grid" id="gallery"></div>
+  <div class="gallery-list" id="gallery"></div>
 </main>
 
 <footer>
@@ -701,8 +556,6 @@
     </div>
   </div>
 </div>
-
-<div class="toast-container" id="toastContainer"></div>
 
 <script>
   let allData = [];
@@ -803,21 +656,8 @@
           <span class="category-badge cat-${escHtml(item.category)}">Cat ${escHtml(item.category)}</span>
           <span class="card-date">${formatDate(item.date)}</span>
         </div>
-        <div class="card-title" title="${escHtml(item.title)}">${escHtml(item.title)}</div>
+        <div class="card-title">${escHtml(item.title)}</div>
         <div class="card-desc">${escHtml(item.description)}</div>
-        <div class="card-footer">
-          <span class="card-id">#${item.id}</span>
-          <button class="delete-toggle-btn" title="Delete entry" aria-label="Delete">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>
-            </svg>
-          </button>
-        </div>
-        <div class="delete-confirm-area" id="dc-${item.id}">
-          <span>Delete this entry?</span>
-          <button class="btn-cancel-delete">Cancel</button>
-          <button class="btn-confirm-delete">Delete</button>
-        </div>
       </div>`;
 
     const img = wrapper.querySelector(".card-img");
@@ -835,54 +675,11 @@
     };
 
     const imgWrap = wrapper.querySelector(".card-img-wrap");
-    imgWrap.addEventListener("click", (e) => {
-      e.stopPropagation();
+    imgWrap.addEventListener("click", () => {
       openLightbox(item.image, item.title);
     });
 
-    const deleteToggle = wrapper.querySelector(".delete-toggle-btn");
-    const confirmArea = wrapper.querySelector(".delete-confirm-area");
-    const cancelBtn = wrapper.querySelector(".btn-cancel-delete");
-    const confirmBtn = wrapper.querySelector(".btn-confirm-delete");
-
-    deleteToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      confirmArea.classList.toggle("visible");
-    });
-
-    cancelBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      confirmArea.classList.remove("visible");
-    });
-
-    confirmBtn.addEventListener("click", async (e) => {
-      e.stopPropagation();
-      await deleteEntry(item.id, wrapper);
-    });
-
     return wrapper;
-  }
-
-  async function deleteEntry(id, cardEl) {
-    try {
-      const res = await fetch(`/api/delete/${id}`, { method: "DELETE" });
-      const json = await res.json();
-
-      if (!res.ok) throw new Error(json.message || "Delete failed");
-
-      cardEl.style.transition = "opacity 0.3s, transform 0.3s";
-      cardEl.style.opacity = "0";
-      cardEl.style.transform = "scale(0.9)";
-
-      setTimeout(() => {
-        allData = allData.filter(i => i.id !== id);
-        renderGallery();
-      }, 300);
-
-      showToast("Entry deleted successfully", "success");
-    } catch (err) {
-      showToast(err.message, "error");
-    }
   }
 
   function openLightbox(src, title) {
@@ -943,15 +740,6 @@
         <div class="error-text">Failed to load archive: ${escHtml(msg)}</div>
       </div>`;
     counterBadge.innerHTML = "Error";
-  }
-
-  function showToast(message, type = "success") {
-    const container = document.getElementById("toastContainer");
-    const toast = document.createElement("div");
-    toast.className = `toast ${type}`;
-    toast.innerHTML = `${type === "success" ? "✓" : "✕"} ${escHtml(message)}`;
-    container.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
   }
 
   function formatDate(dateStr) {
