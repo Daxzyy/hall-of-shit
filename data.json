@@ -1,13 +1,3 @@
 {
-  "collection": [
-    {
-      "id": "1700000006000",
-      "title": "Desert Dunes at Dusk",
-      "category": "C",
-      "description": "Wind-sculpted sand formations glow amber and rose as the sun descends, erasing all footprints from the day.",
-      "image": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800",
-      "date": "2024-06-22",
-      "createdAt": "2024-06-22T18:00:00.000Z"
-    }
-  ]
+  "collection": []
 }
