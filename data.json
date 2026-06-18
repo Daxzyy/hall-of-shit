@@ -1,15 +1,6 @@
 {
   "collection": [
     {
-      "id": "1700000002000",
-      "title": "Deep Forest Path",
-      "category": "B",
-      "description": "A narrow trail disappearing into ancient woodland, where century-old trees form a cathedral of bark and leaf.",
-      "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800",
-      "date": "2024-02-20",
-      "createdAt": "2024-02-20T09:00:00.000Z"
-    },
-    {
       "id": "1700000006000",
       "title": "Desert Dunes at Dusk",
       "category": "C",
