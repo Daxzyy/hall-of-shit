@@ -759,7 +759,6 @@
     wrapper.dataset.id = item.id;
 
     const index = chronoIndex.get(item.id) || 0;
-    const indexLabel = String(index).padStart(3, "0");
     const catColor = getCategoryColor(item.category);
 
     wrapper.innerHTML = `
@@ -772,7 +771,7 @@
           alt="${escHtml(item.title)}"
           loading="lazy"
         />
-        <span class="entry-index">No. ${indexLabel}</span>
+        <span class="entry-index">#${index}</span>
         <span class="entry-stamp" style="color:${catColor};">${escHtml(item.category)}</span>
       </div>
       <div class="entry-meta">
