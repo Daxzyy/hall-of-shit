@@ -21,9 +21,6 @@
       --text-dim: #4a4a70;
       --accent: #ffffff;
       --accent-soft: rgba(255, 255, 255, 0.12);
-      --cat-a: #ff6b6b;
-      --cat-b: #4ecdc4;
-      --cat-c: #ffe66d;
       --danger: #ff4757;
       --radius: 12px;
       --radius-sm: 8px;
@@ -183,6 +180,9 @@
       cursor: pointer;
       transition: background var(--transition), color var(--transition);
       white-space: nowrap;
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .tab-btn:hover { color: var(--text); background: var(--surface-2); }
@@ -304,27 +304,29 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 0.6rem;
+      gap: 0.5rem;
     }
 
     .category-badge {
       font-family: "Space Mono", monospace;
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       padding: 3px 9px;
       border-radius: 100px;
       text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
     }
-
-    .cat-A { background: rgba(255, 107, 107, 0.15); color: var(--cat-a); border: 1px solid rgba(255, 107, 107, 0.3); }
-    .cat-B { background: rgba(78, 205, 196, 0.15); color: var(--cat-b); border: 1px solid rgba(78, 205, 196, 0.3); }
-    .cat-C { background: rgba(255, 230, 109, 0.15); color: var(--cat-c); border: 1px solid rgba(255, 230, 109, 0.3); }
 
     .card-date {
       font-family: "Space Mono", monospace;
       font-size: 10px;
       color: var(--text-dim);
       letter-spacing: 1px;
+      flex-shrink: 0;
     }
 
     .card-title {
@@ -524,12 +526,7 @@
       <input type="text" class="search-input" id="searchInput" placeholder="Search title or description&hellip;" autocomplete="off" />
     </div>
 
-    <div class="filter-tabs" id="filterTabs">
-      <button class="tab-btn active" data-cat="all">All</button>
-      <button class="tab-btn" data-cat="A">A</button>
-      <button class="tab-btn" data-cat="B">B</button>
-      <button class="tab-btn" data-cat="C">C</button>
-    </div>
+    <div class="filter-tabs" id="filterTabs"></div>
 
     <select class="sort-select" id="sortSelect">
       <option value="newest">Newest First</option>
@@ -557,6 +554,17 @@
 </div>
 
 <script>
+  const CATEGORY_PALETTE = [
+    { bg: "rgba(255, 107, 107, 0.15)", color: "#ff6b6b", border: "rgba(255, 107, 107, 0.3)" },
+    { bg: "rgba(78, 205, 196, 0.15)", color: "#4ecdc4", border: "rgba(78, 205, 196, 0.3)" },
+    { bg: "rgba(255, 230, 109, 0.15)", color: "#ffe66d", border: "rgba(255, 230, 109, 0.3)" },
+    { bg: "rgba(149, 175, 255, 0.15)", color: "#95afff", border: "rgba(149, 175, 255, 0.3)" },
+    { bg: "rgba(255, 159, 243, 0.15)", color: "#ff9ff3", border: "rgba(255, 159, 243, 0.3)" },
+    { bg: "rgba(126, 214, 145, 0.15)", color: "#7ed691", border: "rgba(126, 214, 145, 0.3)" },
+    { bg: "rgba(255, 159, 67, 0.15)", color: "#ff9f43", border: "rgba(255, 159, 67, 0.3)" },
+    { bg: "rgba(165, 94, 234, 0.15)", color: "#a55eea", border: "rgba(165, 94, 234, 0.3)" }
+  ];
+
   let allData = [];
   let activeCategory = "all";
   let searchQuery = "";
@@ -580,9 +588,49 @@
       if (!res.ok) throw new Error(`Server responded with ${res.status}`);
       const json = await res.json();
       allData = json.data || [];
+      renderFilterTabs();
       renderGallery();
     } catch (err) {
       showError(err.message);
+    }
+  }
+
+  function hashStr(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = (hash << 5) - hash + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return Math.abs(hash);
+  }
+
+  function getCategoryStyle(category) {
+    const palette = CATEGORY_PALETTE[hashStr(category) % CATEGORY_PALETTE.length];
+    return `background:${palette.bg};color:${palette.color};border:1px solid ${palette.border};`;
+  }
+
+  function renderFilterTabs() {
+    const categories = [...new Set(allData.map(i => i.category))].sort((a, b) => a.localeCompare(b));
+
+    filterTabs.innerHTML = "";
+
+    const allBtn = document.createElement("button");
+    allBtn.className = "tab-btn" + (activeCategory === "all" ? " active" : "");
+    allBtn.dataset.cat = "all";
+    allBtn.textContent = "All";
+    filterTabs.appendChild(allBtn);
+
+    categories.forEach(cat => {
+      const btn = document.createElement("button");
+      btn.className = "tab-btn" + (activeCategory === cat ? " active" : "");
+      btn.dataset.cat = cat;
+      btn.textContent = cat;
+      filterTabs.appendChild(btn);
+    });
+
+    if (activeCategory !== "all" && !categories.includes(activeCategory)) {
+      activeCategory = "all";
+      filterTabs.querySelector('[data-cat="all"]').classList.add("active");
     }
   }
 
@@ -652,7 +700,7 @@
       </div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="category-badge cat-${escHtml(item.category)}">${escHtml(item.category)}</span>
+          <span class="category-badge" style="${getCategoryStyle(item.category)}">${escHtml(item.category)}</span>
           <span class="card-date">${formatDate(item.date)}</span>
         </div>
         <div class="card-title">${escHtml(item.title)}</div>
