@@ -28,15 +28,6 @@
       "createdAt": "2024-03-10T14:45:00.000Z"
     },
     {
-      "id": "1700000004000",
-      "title": "Mountain Reflection",
-      "category": "A",
-      "description": "Snow-capped peaks mirrored perfectly in the still alpine lake at dawn, before the winds disturb the glass surface.",
-      "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
-      "date": "2024-04-05",
-      "createdAt": "2024-04-05T07:15:00.000Z"
-    },
-    {
       "id": "1700000006000",
       "title": "Desert Dunes at Dusk",
       "category": "C",
