@@ -19,8 +19,8 @@
       --text: #e8e8f0;
       --text-muted: #7070a0;
       --text-dim: #4a4a70;
-      --accent: #6c63ff;
-      --accent-soft: rgba(108, 99, 255, 0.15);
+      --accent: #ffffff;
+      --accent-soft: rgba(255, 255, 255, 0.12);
       --cat-a: #ff6b6b;
       --cat-b: #4ecdc4;
       --cat-c: #ffe66d;
@@ -31,6 +31,8 @@
     }
 
     html { scroll-behavior: smooth; }
+
+    a, button, input, select { color: inherit; }
 
     body {
       font-family: "Space Grotesk", sans-serif;
@@ -71,7 +73,8 @@
     .logo-mark {
       width: 36px;
       height: 36px;
-      background: var(--accent);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -79,7 +82,7 @@
       font-family: "Space Mono", monospace;
       font-size: 13px;
       font-weight: 700;
-      color: #fff;
+      color: var(--text);
       letter-spacing: -1px;
       flex-shrink: 0;
     }
@@ -106,7 +109,7 @@
     }
 
     .counter-badge span {
-      color: var(--accent);
+      color: var(--text);
       font-weight: 700;
     }
 
@@ -186,7 +189,7 @@
 
     .tab-btn.active {
       background: var(--accent);
-      color: #fff;
+      color: #0a0a0f;
     }
 
     .sort-select {
@@ -486,8 +489,6 @@
       letter-spacing: 2px;
     }
 
-    .footer-inner span { color: var(--accent); }
-
     @media (max-width: 640px) {
       main { padding: 1.25rem; }
       header { padding: 0 1.25rem; }
@@ -506,7 +507,7 @@
   <div class="header-inner">
     <a href="/" class="logo">
       <div class="logo-mark">HA</div>
-      <span class="logo-text">HOS Archive</span>
+      <span class="logo-text">HOS</span>
     </a>
     <div class="counter-badge" id="counterBadge">
       Loading&hellip;
@@ -525,9 +526,9 @@
 
     <div class="filter-tabs" id="filterTabs">
       <button class="tab-btn active" data-cat="all">All</button>
-      <button class="tab-btn" data-cat="A">Cat A</button>
-      <button class="tab-btn" data-cat="B">Cat B</button>
-      <button class="tab-btn" data-cat="C">Cat C</button>
+      <button class="tab-btn" data-cat="A">A</button>
+      <button class="tab-btn" data-cat="B">B</button>
+      <button class="tab-btn" data-cat="C">C</button>
     </div>
 
     <select class="sort-select" id="sortSelect">
@@ -542,9 +543,7 @@
 </main>
 
 <footer>
-  <div class="footer-inner">
-    HOS ARCHIVE &mdash; <span>API Ready</span> &mdash; CRUD Enabled
-  </div>
+  <div class="footer-inner">HOS Archive</div>
 </footer>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
@@ -653,7 +652,7 @@
       </div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="category-badge cat-${escHtml(item.category)}">Cat ${escHtml(item.category)}</span>
+          <span class="category-badge cat-${escHtml(item.category)}">${escHtml(item.category)}</span>
           <span class="card-date">${formatDate(item.date)}</span>
         </div>
         <div class="card-title">${escHtml(item.title)}</div>
