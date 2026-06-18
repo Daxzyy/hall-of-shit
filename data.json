@@ -1,0 +1,58 @@
+{
+  "collection": [
+    {
+      "id": "1700000001000",
+      "title": "Sunrise Over the Valley",
+      "category": "A",
+      "description": "Golden hour light cascading through morning mist above the highland valley, captured during the first expedition.",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+      "date": "2024-01-15",
+      "createdAt": "2024-01-15T06:30:00.000Z"
+    },
+    {
+      "id": "1700000002000",
+      "title": "Deep Forest Path",
+      "category": "B",
+      "description": "A narrow trail disappearing into ancient woodland, where century-old trees form a cathedral of bark and leaf.",
+      "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800",
+      "date": "2024-02-20",
+      "createdAt": "2024-02-20T09:00:00.000Z"
+    },
+    {
+      "id": "1700000003000",
+      "title": "Storm Over the Sea",
+      "category": "C",
+      "description": "Dramatic cloudscape building above open water, electric tension visible in the churning waves below.",
+      "image": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800",
+      "date": "2024-03-10",
+      "createdAt": "2024-03-10T14:45:00.000Z"
+    },
+    {
+      "id": "1700000004000",
+      "title": "Mountain Reflection",
+      "category": "A",
+      "description": "Snow-capped peaks mirrored perfectly in the still alpine lake at dawn, before the winds disturb the glass surface.",
+      "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
+      "date": "2024-04-05",
+      "createdAt": "2024-04-05T07:15:00.000Z"
+    },
+    {
+      "id": "1700000005000",
+      "title": "Urban Geometry",
+      "category": "B",
+      "description": "Abstract patterns found in the city's architecture — lines, angles, and shadows that reveal hidden order in concrete and steel.",
+      "image": "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800",
+      "date": "2024-05-18",
+      "createdAt": "2024-05-18T11:30:00.000Z"
+    },
+    {
+      "id": "1700000006000",
+      "title": "Desert Dunes at Dusk",
+      "category": "C",
+      "description": "Wind-sculpted sand formations glow amber and rose as the sun descends, erasing all footprints from the day.",
+      "image": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800",
+      "date": "2024-06-22",
+      "createdAt": "2024-06-22T18:00:00.000Z"
+    }
+  ]
+}
